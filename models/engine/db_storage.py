@@ -44,7 +44,10 @@ class DBStorage():
 
     def new(self, obj):
         """ Add the object to the current database session """
-        self.__session.add(obj)
+        if obj:
+            self.__session.add(obj)
+        else:
+            return
 
     def save(self):
         """ Commit all changes of the current database session """
@@ -60,12 +63,12 @@ class DBStorage():
         Base.metadata.create_all(self.__engine)
         # missing code here
         session_factory = sessionmaker(bind=self.__engine, expire_on_commit=False)
-        Session1 = scoped_session(session_factory)
-        self.__session = Session1()
+        session1 = scoped_session(session_factory)
+        self.__session = session1()
 
     def delete(self, obj=None):
         """ Delete from the current database session obj if not None """
-        if obj is not None:
+        if obj:
             self.__session.delete(obj)
             self.save()
 

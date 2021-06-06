@@ -1,17 +1,7 @@
 #!/usr/bin/python3
 """ Here we will create a new engine DBStorage """
 from os import getenv
-
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker, scoped_session
-
-from models.amenity import Amenity
-from models.base_model import Base
-from models.city import City
-from models.place import Place
-from models.review import Review
-from models.state import State
-from models.user import User
 
 """ Private class attributes: __engine and __session """
 """ Public instance methods: __init__(self), all(self, cls=None) """
@@ -30,13 +20,18 @@ class DBStorage():
         host = getenv('HBNB_MYSQL_HOST')
         db = getenv('HBNB_MYSQL_DB')
         # dialect+driver://username:password@host:port/database
-        self.__engine = create_engine('mysql+ mysql_db://{}:{}@{}:3306/{}'\
-                                     .format(user, passwd, host, db), pool_pre_ping=True)
-        if getenv('HBNB_ENV') == 'test':
-            Base.metadata.drop_all()
+        self.__engine = create_engine('mysql+ mysql_db://{}:{}@{}:3306/{}'.
+                                      format(user, passwd, host, db), pool_pre_ping=True)
 
     def all(self, cls=None):
         """query all the rows with given classes"""
+
+        from models.amenity import Amenity
+        from models.city import City
+        from models.place import Place
+        from models.review import Review
+        from models.state import State
+        from models.user import User
 
         rows = []
         classes = [State, City, User, Place, Review, Amenity]
@@ -45,7 +40,7 @@ class DBStorage():
                 rows = rows + self.__session.query(cls)
         else:
             rows = self.__session.query(cls)
-        return {type(row).__name__ + "." + row.id : row for row in rows}
+        return {type(row).__name__ + "." + row.id: row for row in rows}
 
     def new(self, obj):
         """ Add the object to the current database session """
@@ -57,6 +52,11 @@ class DBStorage():
 
     def reload(self):
         """ Create all tables in the db, create the current session """
+        from models.base_model import Base
+        from sqlalchemy.orm import sessionmaker, scoped_session
+
+        if getenv('HBNB_ENV') == 'test':
+            Base.metadata.drop_all()
         Base.metadata.create_all(self.__engine)
         # missing code here
         session_factory = sessionmaker(bind=self.__engine, expire_on_commit=False)
@@ -68,3 +68,7 @@ class DBStorage():
         if obj is not None:
             self.__session.delete(obj)
             self.save()
+
+    def close(self):
+        """session close"""
+        self.__session.close()

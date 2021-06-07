@@ -18,6 +18,10 @@ class BaseModel:
 
     def __init__(self, *args, **kwargs):
         """Instatntiates a new model"""
+        self.created_at = datetime.now()
+        self.updated_at = datetime.now()
+        self.id = str(uuid.uuid4())
+        
         if kwargs:
             for k, v in kwargs.items():
                 if k == "created_at" or k == "updated_at":
@@ -26,10 +30,8 @@ class BaseModel:
                 else:
                     if k != "__class__":
                         setattr(self, k, v)
-        else:
-            self.created_at = datetime.now()
-            self.updated_at = datetime.now()
-            self.id = str(uuid.uuid4())
+
+
 
     def __str__(self):
         """Returns a string representation of the instance"""

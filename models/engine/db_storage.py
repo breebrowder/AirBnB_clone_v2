@@ -35,11 +35,11 @@ class DBStorage():
 
         rows = []
         classes = [State, City, User, Place, Review, Amenity]
-        if cls is None:
-            for cls in classes:
-                rows = rows + self.__session.query(cls)
-        else:
+        if cls:
             rows = self.__session.query(cls)
+        else:
+            for cls in classes:
+                rows += self.__session.query(cls)
         return {type(row).__name__ + "." + row.id: row for row in rows}
 
     def new(self, obj):

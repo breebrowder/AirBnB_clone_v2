@@ -51,9 +51,11 @@ class BaseModel:
                           (str(type(self)).split('.')[-1]).split('\'')[0]})
         dictionary['created_at'] = self.created_at.isoformat()
         dictionary['updated_at'] = self.updated_at.isoformat()
-        new_dict = {key:val for key, val in dictionary.items() if key != '_sa_instance_state'}
+        if '_sa_instance_state' in dictionary.keys():
+            del dictionary['_sa_instance_state']
+        # new_dict = {key:val for key, val in dictionary.items() if key != '_sa_instance_state'}
 #        print(new_dict)
-        return new_dict
+        return dictionary
 
     def delete(self):
         """deletes instances"""

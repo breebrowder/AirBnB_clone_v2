@@ -143,7 +143,7 @@ class HBNBCommand(cmd.Cmd):
         else:
             obj = eval(new_list[0])()
             obj.__dict__.update(kwargs1)
-        storage.new(obj)
+#        storage.new(obj)
         print(obj.id)
         obj.save()
 

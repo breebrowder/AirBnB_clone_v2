@@ -15,15 +15,15 @@ def do_deploy(archive_path):
         return False
 
     try:
-        archiveName = archive_path[9:]
-        archiveNameWithoutExtension = archiveName[:-4]
-        put(archive_path, '/tmp/' + archiveName)
+        arName = archive_path[9:]
+        archiveNameWithoutExtension = arName[:-4]
+        put(archive_path, '/tmp/' + arName)
         run("mkdir -p /data/web_static/releases/" +
             archiveNameWithoutExtension)
-        run('tar -xzvf /tmp/' + archiveName +
+        run('tar -xzvf /tmp/' + arName +
             " -C /data/web_static/releases/" +
             archiveNameWithoutExtension + " --strip-components=1")
-        run("rm -rf /tmp/" + archiveName)
+        run("rm -rf /tmp/" + arName)
         run("rm -rf /data/web_static/current")
         run("sudo ln -sf /data/web_static/releases/" +
             archiveNameWithoutExtension + " /data/web_static/current")

@@ -7,6 +7,7 @@ import os.path
 
 env.hosts = ['35.231.119.75', '34.207.111.89']
 
+
 def do_deploy(archive_path):
     """ Deploy to web_static """
 

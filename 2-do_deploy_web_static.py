@@ -1,7 +1,7 @@
 #!/usr/bin/python3
-""" Fabric script tht generates .tgz ar from contents of web_static """
+""" Writing a script that will compress a fab file """
 
-from fabric.api import local
+from fabric.api import local, env, put, run
 from datetime import datetime
 import os.path
 
@@ -9,21 +9,21 @@ env.hosts = ['35.231.119.75', '34.207.111.89']
 
 
 def do_deploy(archive_path):
-    """ Deploy to web_static """
+    """ Deploying to web-server """
 
     if not os.path.exists(archive_path):
         return False
 
     try:
-        arName = archive_path[9:]
-        archiveNameWithoutExtension = arName[:-4]
-        put(archive_path, '/tmp/' + arName)
+        archiveName = archive_path[9:]
+        archiveNameWithoutExtension = archiveName[:-4]
+        put(archive_path, '/tmp/' + archiveName)
         run("mkdir -p /data/web_static/releases/" +
             archiveNameWithoutExtension)
-        run('tar -xzvf /tmp/' + arName +
+        run('tar -xzvf /tmp/' + archiveName +
             " -C /data/web_static/releases/" +
             archiveNameWithoutExtension + " --strip-components=1")
-        run("rm -rf /tmp/" + arName)
+        run("rm -rf /tmp/" + archiveName)
         run("rm -rf /data/web_static/current")
         run("sudo ln -sf /data/web_static/releases/" +
             archiveNameWithoutExtension + " /data/web_static/current")
@@ -34,18 +34,16 @@ def do_deploy(archive_path):
 
 
 def do_pack():
-    """ Return the archive path if the archive has been correctly generated """
-
+    """ Pack up web """
     try:
         now = datetime.now()
-        ArName = "web_static_" + now.strftime("%Y%m%d%H%M%S") + ".tgz"
-        ArPath = "versions/" + ArName
+        arName = "web_static_" + now.strftime("%Y%m%d%H%M%S") + ".tgz"
+        arPath = "versions/" + arName
 
-        local("sudo mkdir -p versions")
+        local("mkdir -p versions")
+        local("tar -czvf " + arPath + " web_static")
 
-        local("tar -czvf " + ArPath + " web_static")
-
-        return ArPath
+        return arPath
 
     except:
         return None

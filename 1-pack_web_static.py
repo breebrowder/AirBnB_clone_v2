@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" Fabric script tht generates a .tgz ar from contents of web_static folder """
+""" Fabric script tht generates .tgz ar from contents of web_static """
 
 from fabric.api import local
 from datetime import datetime

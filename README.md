@@ -1,4 +1,4 @@
-<center> <h1>AirBnB Clone- MySQL, Deploy Static, Web Framework</h1> </center>
+<center> <h1>AirBnB Clone - MySQL, Deploy Static, Web Framework</h1> </center>
 
 1. [Project Link: MySQL](https://intranet.hbtn.io/projects/289)
 2. [Project Link: Deploy Static](https://intranet.hbtn.io/projects/288)

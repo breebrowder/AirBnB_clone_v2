@@ -141,6 +141,11 @@ Usage: <class_name>.update(<_id>, <dictionary>)
 ```
 <br>
 
+## Contributors
+
+1. Bree Browder - [GitHub](https://github.com/breebrowder)
+3. Simon Sun - [GitHub](https://github.com/ssun97)
+
 ## About the Developer  💬
 
 ### Bree Browder

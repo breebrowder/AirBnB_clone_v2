@@ -1,4 +1,8 @@
-<center> <h1>HBNB - The Console</h1> </center>
+<center> <h1>MySQL, Deploy Static, Web Framework</h1> </center>
+
+[Project Link: MySQL](https://intranet.hbtn.io/projects/289)
+[Project Link: Deploy Static](https://intranet.hbtn.io/projects/288)
+[Project Link: Web Framework](https://intranet.hbtn.io/projects/290)
 
 This repository contains the initial stage of a student project to build a clone of the AirBnB website. This stage implements a backend interface, or console, to manage program data. Console commands allow the user to create, update, and destroy objects, as well as manage file storage. Using a system of JSON serialization/deserialization, storage is persistent between sessions.
 
@@ -144,7 +148,7 @@ Usage: <class_name>.update(<_id>, <dictionary>)
 ## Contributors
 
 1. Bree Browder - [GitHub](https://github.com/breebrowder)
-3. Simon Sun - [GitHub](https://github.com/ssun97)
+2. Simon Sun - [GitHub](https://github.com/ssun97)
 
 ## About the Developer  💬
 

@@ -1,8 +1,8 @@
-<center> <h1>MySQL, Deploy Static, Web Framework</h1> </center>
+<center> <h1>AirBnB Clone- MySQL, Deploy Static, Web Framework</h1> </center>
 
-[Project Link: MySQL](https://intranet.hbtn.io/projects/289)
-[Project Link: Deploy Static](https://intranet.hbtn.io/projects/288)
-[Project Link: Web Framework](https://intranet.hbtn.io/projects/290)
+1. [Project Link: MySQL](https://intranet.hbtn.io/projects/289)
+2. [Project Link: Deploy Static](https://intranet.hbtn.io/projects/288)
+3. [Project Link: Web Framework](https://intranet.hbtn.io/projects/290)
 
 This repository contains the initial stage of a student project to build a clone of the AirBnB website. This stage implements a backend interface, or console, to manage program data. Console commands allow the user to create, update, and destroy objects, as well as manage file storage. Using a system of JSON serialization/deserialization, storage is persistent between sessions.
 
